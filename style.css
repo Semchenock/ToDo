@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Avenir Next";
+  src: url(/Assets/AvenirNextLTPro-Regular.otf);
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Avenir Next";
+  font-style: normal;
+  color: #171717;
+  letter-spacing: -0.02em;
+}
+body {
+  background-color: rgba(225, 232, 237, 1);
+  background-image: url("/Assets/Home.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+h1 {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 52px;
+  margin: 40px 0px;
+}
+.container {
+  width: 90vw;
+  margin: auto;
+}
+.taskLists {
+  display: flex;
+  justify-content: space-between;
+}
+.block {
+  width: 20vw;
+  border-radius: 5px;
+}
