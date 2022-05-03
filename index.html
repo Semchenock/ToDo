@@ -13,30 +13,50 @@
       <div class="taskLists">
         <div class="toDo block">
           <div class="headline"></div>
-          <img src="/Assets/Notebook.png" alt="📝" class="icon" />
-          <h2>To Do</h2>
-          <button class="add-btn"></button>
-          <div class="toDo tasks"></div>
+          <div class="head">
+            <div class="headName">
+              <img src="/Assets/Notebook.png" alt="📝" class="icon" />
+              <h2>To Do</h2>
+            </div>
+            <button class="add btn">+</button>
+          </div>
+          <div class="toDo tasks">
+            <div class="task" id="1">
+              <p>Lorem ipsum dolor sit amet</p>
+            </div>
+          </div>
         </div>
         <div class="inProgress block">
           <div class="headline"></div>
-          <img src="/Assets/Laptop.png" alt="💻" class="icon" />
-          <h2>In Progress</h2>
-          <button class="add-btn"></button>
+          <div class="head">
+            <div class="headName">
+              <img src="/Assets/Laptop.png" alt="💻" class="icon" />
+              <h2>In Progress</h2>
+            </div>
+          </div>
           <div class="inProgress tasks"></div>
         </div>
         <div class="review block">
           <div class="headline"></div>
-          <img src="/Assets/Feltpen.png" alt="🖊" class="icon" />
-          <h2>Review</h2>
-          <button class="add-btn"></button>
+          <div class="head">
+            <div class="headName">
+              <img src="/Assets/Feltpen.png" alt="🖊" class="icon" />
+              <h2>Review</h2>
+            </div>
+          </div>
           <div class="review tasks"></div>
         </div>
         <div class="done block">
           <div class="headline"></div>
-          <img src="/Assets/Rocket.png" alt="🚀" class="icon" />
-          <h2>Done</h2>
-          <button class="clean-btn"></button>
+          <div class="head">
+            <div class="headName">
+              <img src="/Assets/Rocket.png" alt="🚀" class="icon" />
+              <h2 class="black">Done</h2>
+            </div>
+            <button class="clean btn">
+              <img src="/Assets/Trash.png" alt="🗑" />
+            </button>
+          </div>
           <div class="done tasks"></div>
         </div>
       </div>
