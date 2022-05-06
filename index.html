@@ -20,9 +20,21 @@
             </div>
             <button class="add btn">+</button>
           </div>
-          <div class="toDo tasks">
-            <div class="task" id="1">
-              <p>Lorem ipsum dolor sit amet</p>
+          <div class="toDo tasks" data-zone="toDo">
+            <div class="task form">
+              <span class="textarea" role="textbox" contenteditable></span>
+
+              <div class="nav">
+                <button class="confirm btn">
+                  <img src="/Assets/Confirm.png" alt="✔" />
+                </button>
+                <button class="cancel btn">
+                  <img src="/Assets/Close.png" alt="❌" />
+                </button>
+              </div>
+            </div>
+            <div class="task" draggable="true" data-item="0">
+              <p>Try to drag it to the next cloumn</p>
             </div>
           </div>
         </div>
@@ -34,7 +46,7 @@
               <h2>In Progress</h2>
             </div>
           </div>
-          <div class="inProgress tasks"></div>
+          <div class="inProgress tasks" data-zone="inProgress"></div>
         </div>
         <div class="review block">
           <div class="headline"></div>
@@ -44,7 +56,7 @@
               <h2>Review</h2>
             </div>
           </div>
-          <div class="review tasks"></div>
+          <div class="review tasks" data-zone="review"></div>
         </div>
         <div class="done block">
           <div class="headline"></div>
@@ -57,9 +69,10 @@
               <img src="/Assets/Trash.png" alt="🗑" />
             </button>
           </div>
-          <div class="done tasks"></div>
+          <div class="done tasks" data-zone="done"></div>
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
