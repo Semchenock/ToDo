@@ -13,6 +13,9 @@ let droppedItem = null;
 function insertAfter(newNode, existingNode) {
   existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
+function insertBefore(newNode, existingNode) {
+  existingNode.parentNode.insertBefore(newNode, existingNode);
+}
 function callAddForm() {
   form.style.display = "flex";
   addBtn.style.display = "none";
@@ -24,10 +27,10 @@ function hideAddForm() {
 }
 function addTask(text) {
   if (text !== "") {
-    const newTask = document.createElement("div");
+    const newTask = document.createElement("p");
     const dataItem = Date.now();
     dataItem.toString();
-    newTask.innerHTML = `<p>${text}</p>`;
+    newTask.textContent = text;
     newTask.setAttribute("class", "task");
     newTask.setAttribute("draggable", "true");
     newTask.setAttribute("data-item", dataItem);
@@ -41,11 +44,11 @@ function addListners(dragItem) {
   dragItem.addEventListener("dragstart", handlerDragstart);
   dragItem.addEventListener("dragend", handlerDragend);
   dragItem.addEventListener("dragenter", () => {
-    if (droppedItem !== dragItem) {
+    if (dragItem !== draggedItem) {
       droppedItem = dragItem;
     }
   });
-  dragItem.addEventListener("dragover", () => {
+  dragItem.addEventListener("dragleave", () => {
     droppedItem = null;
   });
 }
@@ -64,9 +67,24 @@ function handlerDragover(e) {
   e.preventDefault();
 }
 function handlerDrop(e) {
-  const zoneFlag = this.dataset.zone;
-  const taskList = document.querySelector(`.${zoneFlag}.tasks`);
-  taskList.append(draggedItem);
+  if (droppedItem) {
+    if (droppedItem.parentElement === draggedItem.parentElement) {
+      const children = Array.from(draggedItem.parentElement.children);
+      const indexOfDropped = children.indexOf(droppedItem);
+      const indexOfDragged = children.indexOf(draggedItem);
+      if (indexOfDropped > indexOfDragged) {
+        insertAfter(draggedItem, droppedItem);
+      } else {
+        insertBefore(draggedItem, droppedItem);
+      }
+    } else {
+      insertAfter(draggedItem, droppedItem);
+    }
+  } else {
+    const zoneFlag = this.dataset.zone;
+    const taskList = document.querySelector(`.${zoneFlag}.tasks`);
+    taskList.append(draggedItem);
+  }
 }
 
 addBtn.addEventListener("click", callAddForm);
@@ -83,3 +101,4 @@ dropZones.forEach((dropZone) => {
   dropZone.addEventListener("dragover", handlerDragover);
   dropZone.addEventListener("drop", handlerDrop);
 });
+console.log(dragItems);
