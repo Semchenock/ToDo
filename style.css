@@ -98,8 +98,8 @@ h2.black {
   width: 18px;
 }
 .form {
-  display: flex;
   flex-direction: column;
+  display: none;
 }
 .form .nav {
   align-self: flex-end;
@@ -127,4 +127,7 @@ h2.black {
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
+}
+.dragItem--active {
+  opacity: 0.5;
 }
