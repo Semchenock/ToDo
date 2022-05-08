@@ -6,6 +6,7 @@ const form = document.querySelector(".task.form");
 const dropZones = document.querySelectorAll(".block");
 const dragItems = document.querySelectorAll(".task[draggable]");
 // const taskLists = document.querySelectorAll(".tasks");
+const deleteBtn = document.querySelector(".clean");
 
 let draggedItem = null;
 let droppedItem = null;
@@ -40,23 +41,27 @@ function addTask(text) {
   }
 }
 
+function handlerDragenterElement() {
+  if (this !== draggedItem) {
+    droppedItem = this;
+  }
+}
+function handlerDragleaveElement() {
+  droppedItem = null;
+}
 function addListners(dragItem) {
   dragItem.addEventListener("dragstart", handlerDragstart);
   dragItem.addEventListener("dragend", handlerDragend);
-  dragItem.addEventListener("dragenter", () => {
-    if (dragItem !== draggedItem) {
-      droppedItem = dragItem;
-    }
-  });
-  dragItem.addEventListener("dragleave", () => {
-    droppedItem = null;
-  });
+  dragItem.addEventListener("dragenter", handlerDragenterElement);
+  dragItem.addEventListener("dragleave", handlerDragleaveElement);
 }
-function handlerDragstart(e) {
-  draggedItem = this;
-  this.classList.add("dragItem--active");
+function handlerDragstart() {
+  if (this.classList.contains(".task")) {
+    draggedItem = this;
+    this.classList.add("dragItem--active");
+  }
 }
-function handlerDragend(e) {
+function handlerDragend() {
   draggedItem = null;
   this.classList.remove("dragItem--active");
 }
@@ -66,9 +71,11 @@ function handlerDragenter(e) {
 function handlerDragover(e) {
   e.preventDefault();
 }
-function handlerDrop(e) {
+function handlerDrop() {
   if (droppedItem) {
-    if (droppedItem.parentElement === draggedItem.parentElement) {
+    if (droppedItem === deleteBtn) {
+      draggedItem.remove();
+    } else if (droppedItem.parentElement === draggedItem.parentElement) {
       const children = Array.from(draggedItem.parentElement.children);
       const indexOfDropped = children.indexOf(droppedItem);
       const indexOfDragged = children.indexOf(draggedItem);
@@ -101,4 +108,9 @@ dropZones.forEach((dropZone) => {
   dropZone.addEventListener("dragover", handlerDragover);
   dropZone.addEventListener("drop", handlerDrop);
 });
-console.log(dragItems);
+deleteBtn.addEventListener("dragenter", handlerDragenter);
+deleteBtn.addEventListener("dragover", handlerDragover);
+deleteBtn.addEventListener("dragenter", handlerDragenterElement);
+deleteBtn.addEventListener("dragleave", handlerDragleaveElement);
+deleteBtn.addEventListener("drop", handlerDrop);
+// deleteBtn.addEventListener("click", deleteAll);
