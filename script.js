@@ -46,12 +46,10 @@ function deleteAll() {
 
 function handlerDragenterElement() {
   if (this !== draggedItem) {
-    console.log("croseed", this);
     droppedItem = this;
   }
 }
 function handlerDragleaveElement() {
-  console.log("leaved", this);
   droppedItem = null;
 }
 function addListners(dragItem) {
@@ -74,7 +72,7 @@ function handlerDragenter(e) {
 function handlerDragover(e) {
   e.preventDefault();
 }
-function handlerDrop() {
+function handlerDrop(e) {
   if (draggedItem) {
     if (droppedItem) {
       if (droppedItem === deleteBtn) {
@@ -92,14 +90,13 @@ function handlerDrop() {
         insertAfter(draggedItem, droppedItem);
       }
     } else {
-      console.log(droppedItem);
-      console.log(this);
-      if (this === deleteBtn) {
+      if (this === deleteBtn || e.path[1] === deleteBtn) {
         draggedItem.remove();
+      } else {
+        const zoneFlag = this.dataset.zone;
+        const taskList = document.querySelector(`.${zoneFlag}.tasks`);
+        taskList.append(draggedItem);
       }
-      const zoneFlag = this.dataset.zone;
-      const taskList = document.querySelector(`.${zoneFlag}.tasks`);
-      taskList.append(draggedItem);
     }
   }
 }

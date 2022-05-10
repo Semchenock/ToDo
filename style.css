@@ -1,18 +1,19 @@
-@font-face {
+/* @font-face {
   font-family: "Avenir Next";
   src: url(/Assets/AvenirNextLTPro-Regular.otf);
-}
+} */
 * {
   padding: 0;
   margin: 0;
-  font-family: "Avenir Next";
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Avenir Next"; */
   font-style: normal;
   color: #171717;
   letter-spacing: -0.02em;
 }
 body {
   background-color: rgba(225, 232, 237, 1);
-  background-image: url("/Assets/Home.png");
+  background-image: url("/Home.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
