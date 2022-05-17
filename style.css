@@ -13,7 +13,7 @@
 }
 body {
   background-color: rgba(225, 232, 237, 1);
-  background-image: url("/Home.png");
+  background-image: url("Home.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
