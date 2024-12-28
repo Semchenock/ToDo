@@ -90,7 +90,7 @@ function handlerDrop(e) {
         insertAfter(draggedItem, droppedItem);
       }
     } else {
-      if (this === deleteBtn || e.path[1] === deleteBtn) {
+      if (this === deleteBtn || e.path?.[1] === deleteBtn) {
         draggedItem.remove();
       } else {
         const zoneFlag = this.dataset.zone;
